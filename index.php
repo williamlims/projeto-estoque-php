@@ -22,7 +22,7 @@
               <a class="nav-link" href="#">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cadastro</a>
+              <a class="nav-link" href="pages/cadastro.php">Cadastro</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Políticas</a>
@@ -36,7 +36,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <article class="card-body">
-                    <a href="" class="float-right btn btn-outline-primary">Registrar</a>
+                    <a href="pages/cadastro.php" class="float-right btn btn-outline-primary">Registrar</a>
                     <h4 class="card-title mb-4 mt-1">Entrar</h4>
                         <form>
                             <div class="form-group">
