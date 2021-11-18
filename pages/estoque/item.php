@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Estoque | Controle de Estoque</title>
+	<title>Cadastro de Item | Controle de Estoque</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="../../assets/js/jquery-3.5.1.slim.min.js"></script>
@@ -48,10 +48,10 @@
 				<div id="sidebar" class="collapse collapse-horizontal show border-end">
 					<div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;">
 						<ul class="nav nav-pills flex-column mb-auto">
-							<li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+							<li class="nav-item"><a href="index.php" class="nav-link text-white" aria-current="page"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
 							<li><a href="dashboard.php" class="nav-link text-white"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a></li>
 							<li><a href="deposito.php" class="nav-link text-white"><i class="fa fa-pencil-square" aria-hidden="true"></i> Cadastrar Depósito</a></li>
-							<li><a href="item.php" class="nav-link text-white"><i class="fa fa-dropbox" aria-hidden="true"></i> Cadastrar Item</a></li>
+							<li><a href="item.php" class="nav-link text-white active"><i class="fa fa-dropbox" aria-hidden="true"></i> Cadastrar Item</a></li>
 							<li><a href="transferencia.php" class="nav-link text-white"><i class="fa fa-exchange" aria-hidden="true"></i> Transferência</a></li>
 							<li><a href="itens.php" class="nav-link text-white"><i class="fa fa-list-alt" aria-hidden="true"></i> Itens</a></li>
 							<li><a href="movimentacoes.php" class="nav-link text-white"><i class="fa fa-window-restore" aria-hidden="true"></i> Movimentações</a></li>
@@ -63,9 +63,52 @@
 
 			<main class="col ps-md-2 pt-2">
 				<div class="row">
-					<span class="p-1 w-100 mx-2 px-3 py-2 bg-light bg-gradient text-muted">Home</span>
-					<div class="col w-100 mx-2 mt-2">
-						Área de conteúdo ...
+					<span class="p-1 w-100 mx-2 px-3 py-2 bg-light bg-gradient text-muted">Home / Cadastrar Item</span>
+					<div class="col w-100 mx-2 mt-2 text-muted">
+						<br>
+						<form>
+							<div class="row">
+								<div class="mb-3 col-6">
+									<label for="deposito" class="form-label">Depósito</label>
+									<select class="form-select form-control" id="deposito" name="deposito">
+										<option selected>--------------</option>
+										<option value="1">Depósito 1</option>
+										<option value="2">Depósito 2</option>
+									</select>
+								</div>
+								<div class="mb-3 col-6">
+									<label for="nome" class="form-label">Nome do Item</label>
+									<input type="text" class="form-control" name="nome" id="nome">
+								</div>
+							</div>
+							<div class="row">
+								<div class="mb-3 col-4">
+									<label for="quantidade" class="form-label">Quantidade</label>
+									<input type="number" class="form-control" id="quantidade" name="quantidade">
+								</div>
+								<div class="mb-3 col-4">
+									<label for="custo" class="form-label">Custo do Item</label>
+									<input type="text" class="form-control" id="custo" name="custo">
+								</div>
+								<div class="mb-3 col-4">
+									<label for="preco" class="form-label">Preço de Venda</label>
+									<input type="text" class="form-control" id="preco" name="preco">
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="unidade">Unidade de Medida</label>
+								<select class="form-select form-control" id="unidade" name="unidade">
+									<option selected>--------------</option>
+									<option value="UN">UN</option>
+									<option value="KG">KG</option>
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="descricao" class="form-label">Descrição</label>
+								<textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+							</div><br>
+							<button type="submit" class="btn btn-primary btn-lg"> Cadastrar </button>
+						</form>
 					</div>
 				</div>
 			</main>
