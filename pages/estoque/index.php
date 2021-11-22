@@ -65,7 +65,41 @@
 				<div class="row">
 					<span class="p-1 w-100 mx-2 px-3 py-2 bg-light bg-gradient text-muted">Home</span>
 					<div class="col w-100 mx-2 mt-2">
-						Área de conteúdo ...
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class="card">
+									<img src="../../assets/img/itens-estoque.jpg" class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Itens no Estoque</h5>
+										<p class="card-text">Verifique os itens cadastrados no estoque e controle os ativos com as ferramentas de controle de estoque.</p>
+										<a href="itens.php" class="btn btn-primary">Listar Itens</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div class="card">
+									<img src="../../assets/img/movimento.jpg" class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Movimentações</h5>
+										<p class="card-text">Verifique as movimentações de itens no estoque e controle os ativos com as ferramentas de controle de estoque.</p>
+										<a href="movimentacoes.php" class="btn btn-primary">Ver Movimento</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div class="card">
+									<img src="../../assets/img/itens-estoque.jpg" class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Cadastrar Item</h5>
+										<p class="card-text">Cadastre novos itens no estoque e controle os ativos com as ferramentas de controle de estoque.</p>
+										<a href="item.php" class="btn btn-primary">Cadastrar Item</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</main>
