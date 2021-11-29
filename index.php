@@ -38,15 +38,15 @@
                     <article class="card-body">
                     <a href="pages/cadastro.php" class="float-right btn btn-outline-primary">Registrar</a>
                     <h4 class="card-title mb-4 mt-1">Entrar</h4>
-                        <form>
+                        <form action="scripts/login.php" method="post">
                             <div class="form-group">
                                 <label>Seu email</label>
-                                <input name="" class="form-control" placeholder="Email" type="email">
+                                <input name="email" id="email" class="form-control" placeholder="Email" type="email">
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <a class="float-right" href="pages/esqueceu.php">Esqueceu?</a>
                                 <label>Sua senha</label>
-                                <input class="form-control" placeholder="******" type="password">
+                                <input class="form-control" name="senha" id="senha" placeholder="******" type="password">
                             </div> <!-- form-group// --> 
                             <div class="form-group"> 
                             <div class="checkbox">

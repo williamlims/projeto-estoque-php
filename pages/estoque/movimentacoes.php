@@ -1,10 +1,29 @@
+<?php 
+session_start();
+$conn = new SQLite3("../../data/estoque.db");
+
+if(isset($_SESSION["email"]) && isset($_SESSION["senha"])){
+
+	$email = $senha = "";
+	$email = $_SESSION["email"];
+	$senha = $_SESSION["senha"];	
+
+
+	$sql = "SELECT * FROM usuario where email='$email' AND senha='$senha' ";
+
+	$ret = $conn->query($sql);
+
+	$row = $ret->fetchArray(SQLITE3_ASSOC);
+
+	$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Movimentacoes | Controle de Estoque</title>
+	<title>Movimentações | Controle de Estoque</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="../../assets/js/jquery-3.5.1.slim.min.js"></script>
@@ -36,7 +55,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+					<a href="../../scripts/logout.php" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
 				</li>
 			</ul>
 		</div>
@@ -76,27 +95,23 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php 
+									$connD = new SQLite3("../../data/estoque.db");
+									$sqlD = "SELECT * FROM movimentacoes ";
+									$retD = $connD->query($sqlD);
+									while($rowD = $retD->fetchArray(SQLITE3_ASSOC)){
+								?>
 								<tr>
-									<td>1</td>
-									<td>Computador</td>
-									<td>Entrada</td>
-									<td>Depósito 1</td>
-									<td>1</td>
+									<td><?php echo $rowD['id']; ?></td>
+									<td><?php echo $rowD['nome_item']; ?></td>
+									<td><?php echo $rowD['transacao']; ?></td>
+									<td><?php echo $rowD['deposito']; ?></td>
+									<td><?php echo $rowD['quantidade']; ?></td>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>Computador DRF</td>
-									<td>Entrada</td>
-									<td>Depósito 2</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Notebook</td>
-									<td>Entrada</td>
-									<td>Depósito 2</td>
-									<td>5</td>
-								</tr>
+								<?php 
+									}
+									$conn->close();
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -106,3 +121,11 @@
 	</div>
 </body>
 </html>
+<?php
+} else {
+	$conn->close();	
+	echo "<script>alert('É preciso fazer o login!');</script>";
+	echo "<head><meta http-equiv=\"refresh\" content=2;url=\"../../index.php\"></head>";
+}
+	
+?>

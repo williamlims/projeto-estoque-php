@@ -1,3 +1,22 @@
+<?php 
+session_start();
+$conn = new SQLite3("../../data/estoque.db");
+
+if(isset($_SESSION["email"]) && isset($_SESSION["senha"])){
+
+	$email = $senha = "";
+	$email = $_SESSION["email"];
+	$senha = $_SESSION["senha"];	
+
+
+	$sql = "SELECT * FROM usuario where email='$email' AND senha='$senha' ";
+
+	$ret = $conn->query($sql);
+
+	$row = $ret->fetchArray(SQLITE3_ASSOC);
+
+	$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +55,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+					<a href="../../scripts/logout.php" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
 				</li>
 			</ul>
 		</div>
@@ -68,7 +87,7 @@
 						<br>
 						<div class="row">
 							<div class="col-4">
-								<div class="card">
+								<div class="card" >
 									<img src="../../assets/img/itens-estoque.jpg" class="card-img-top" alt="...">
 									<div class="card-body">
 										<h5 class="card-title">Itens no Estoque</h5>
@@ -79,23 +98,23 @@
 							</div>
 
 							<div class="col-4">
-								<div class="card">
+								<div class="card" >
 									<img src="../../assets/img/movimento.jpg" class="card-img-top" alt="...">
 									<div class="card-body">
 										<h5 class="card-title">Movimentações</h5>
 										<p class="card-text">Verifique as movimentações de itens no estoque e controle os ativos com as ferramentas de controle de estoque.</p>
-										<a href="movimentacoes.php" class="btn btn-primary">Ver Movimento</a>
+										<a href="movimentacoes.php" class="btn btn-primary">Listar Movimentações</a>
 									</div>
 								</div>
 							</div>
 
 							<div class="col-4">
-								<div class="card">
+								<div class="card" >
 									<img src="../../assets/img/cadastro.jpg" class="card-img-top" alt="...">
 									<div class="card-body">
 										<h5 class="card-title">Cadastrar Item</h5>
 										<p class="card-text">Cadastre novos itens no estoque e controle os ativos com as ferramentas de controle de estoque.</p>
-										<a href="item.php" class="btn btn-primary">Cadastrar Item</a>
+										<a href="item.php" class="btn btn-primary">Cadastrar Novo Item</a>
 									</div>
 								</div>
 							</div>
@@ -107,3 +126,11 @@
 	</div>
 </body>
 </html>
+<?php
+} else {
+	$conn->close();	
+	echo "<script>alert('É preciso fazer o login!');</script>";
+	echo "<head><meta http-equiv=\"refresh\" content=2;url=\"../../index.php\"></head>";
+}
+	
+?>

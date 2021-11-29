@@ -26,7 +26,7 @@
     </nav>
     <br><br>
     <div class="container">
-        <form>
+        <form action="../scripts/recuperar_senha.php" method="post">
             <div class="row d-flex justify-content-center">
                 <div class="col-6">
                     <label for="email" class="form-label">Insira seu Email!</label>

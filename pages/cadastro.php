@@ -27,7 +27,7 @@
     <br><br>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <form class="row g-3">
+            <form class="row g-3" action="../scripts/cadastrar_usuario.php" method="post">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome</label>
                     <input type="text" name="nome" id="nome" class="form-control">

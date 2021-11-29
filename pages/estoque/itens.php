@@ -1,3 +1,22 @@
+<?php 
+session_start();
+$conn = new SQLite3("../../data/estoque.db");
+
+if(isset($_SESSION["email"]) && isset($_SESSION["senha"])){
+
+	$email = $senha = "";
+	$email = $_SESSION["email"];
+	$senha = $_SESSION["senha"];	
+
+
+	$sql = "SELECT * FROM usuario where email='$email' AND senha='$senha' ";
+
+	$ret = $conn->query($sql);
+
+	$row = $ret->fetchArray(SQLITE3_ASSOC);
+
+	$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +55,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+					<a href="../../scripts/logout.php" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
 				</li>
 			</ul>
 		</div>
@@ -75,24 +94,22 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php 
+									$connD = new SQLite3("../../data/estoque.db");
+									$sqlD = "SELECT * FROM item ";
+									$retD = $connD->query($sqlD);
+									while($rowD = $retD->fetchArray(SQLITE3_ASSOC)){
+								?>
 								<tr>
-									<td>1</td>
-									<td>Computador</td>
-									<td>Depósito 1</td>
-									<td>1</td>
+									<td><?php echo $rowD['id']; ?></td>
+									<td><?php echo $rowD['nome_item']; ?></td>
+									<td><?php echo $rowD['id_deposito']; ?></td>
+									<td><?php echo $rowD['quantidade']; ?></td>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>Computador DRF</td>
-									<td>Depósito 2</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Notebook</td>
-									<td>Depósito 2</td>
-									<td>5</td>
-								</tr>
+								<?php 
+									}
+									$conn->close();
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -102,3 +119,11 @@
 	</div>
 </body>
 </html>
+<?php
+} else {
+	$conn->close();	
+	echo "<script>alert('É preciso fazer o login!');</script>";
+	echo "<head><meta http-equiv=\"refresh\" content=2;url=\"../../index.php\"></head>";
+}
+	
+?>

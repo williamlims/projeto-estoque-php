@@ -1,3 +1,22 @@
+<?php 
+session_start();
+$conn = new SQLite3("../../data/estoque.db");
+
+if(isset($_SESSION["email"]) && isset($_SESSION["senha"])){
+
+	$email = $senha = "";
+	$email = $_SESSION["email"];
+	$senha = $_SESSION["senha"];	
+
+
+	$sql = "SELECT * FROM usuario where email='$email' AND senha='$senha' ";
+
+	$ret = $conn->query($sql);
+
+	$row = $ret->fetchArray(SQLITE3_ASSOC);
+
+	$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +55,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+					<a href="../../scripts/logout.php" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
 				</li>
 			</ul>
 		</div>
@@ -66,14 +85,21 @@
 					<span class="p-1 w-100 mx-2 px-3 py-2 bg-light bg-gradient text-muted">Home / Cadastrar Item</span>
 					<div class="col w-100 mx-2 mt-2 text-muted">
 						<br>
-						<form>
+						<form action="../../scripts/cadastrar_item.php" method="post">
 							<div class="row">
 								<div class="mb-3 col-6">
 									<label for="deposito" class="form-label">Depósito</label>
 									<select class="form-select form-control" id="deposito" name="deposito">
 										<option selected>--------------</option>
-										<option value="1">Depósito 1</option>
-										<option value="2">Depósito 2</option>
+										<?php 
+											$connD = new SQLite3("../../data/estoque.db");
+											$sqlD = "SELECT * FROM deposito ";
+											$retD = $connD->query($sqlD);
+											while($rowD = $retD->fetchArray(SQLITE3_ASSOC)){
+												echo "<option value='".$rowD['id']."'>".$rowD['nome']."</option>";
+											}
+											$conn->close();
+										?>
 									</select>
 								</div>
 								<div class="mb-3 col-6">
@@ -116,3 +142,11 @@
 	</div>
 </body>
 </html>
+<?php
+} else {
+	$conn->close();	
+	echo "<script>alert('É preciso fazer o login!');</script>";
+	echo "<head><meta http-equiv=\"refresh\" content=2;url=\"../../index.php\"></head>";
+}
+	
+?>
